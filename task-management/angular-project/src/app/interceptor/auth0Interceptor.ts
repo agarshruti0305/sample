@@ -16,12 +16,14 @@ export class Auth0Interceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler) {
 
         const authToken = localStorage.getItem('token');
+        const userEmail = localStorage.getItem('user')
 
         if (authToken) {
             // console.log(authToken)
             const modifiedRequest = request.clone({
                 headers: new HttpHeaders({
-                    Authorization: `Bearer ${authToken}`
+                    Authorization: `Bearer ${authToken}`,
+                    userEmail: userEmail
                 })
             })
 

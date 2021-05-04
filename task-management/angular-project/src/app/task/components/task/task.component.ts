@@ -14,7 +14,7 @@ user='';
   ngOnInit(): void {
     this.authSevice.idTokenClaims$.subscribe((res)=> {
       console.log(res);
-      localStorage.setItem("accessToken",res.__raw);
+      localStorage.setItem("token",res.__raw);
       localStorage.setItem("user",res.email);
       this.user = res.email;
       this.router.navigateByUrl('task/task-list');

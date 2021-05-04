@@ -10,14 +10,18 @@ import { TaskModule } from './task/task.module';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Auth0Interceptor } from './interceptor/auth0Interceptor';
 import { DatePipe } from '@angular/common';
+import {FormsModule } from '@angular/forms';
+import { StatusPipe } from './shared/pipes/status.pipe';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    StatusPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     TaskModule,
     HttpClientModule,
     AuthModule.forRoot({

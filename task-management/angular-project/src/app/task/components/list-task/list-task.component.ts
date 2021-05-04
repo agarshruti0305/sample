@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { Task } from 'src/app/shared/models/task.model';
+import { TaskService } from 'src/app/shared/task.service';
 
 @Component({
   selector: 'app-list-task',
@@ -10,32 +11,34 @@ import { Task } from 'src/app/shared/models/task.model';
 })
 export class ListTaskComponent implements OnInit {
   selectedTask: Task;
-  taskList = [];
+  taskList:any;
   message="";
   createTaskModal = false;
-  constructor(private router:Router) { }
+  constructor(private router:Router, private taskService:TaskService) { }
 
   ngOnInit(): void {
     this.getListOfItems();
   }
 
   getListOfItems() {
-   
-    for(let i =1;i<4;i++) {
-      let t = new Task();
-      t.id = i.toString();
-      t.taskName = "demo"+i.toString();
-      t.taskDate = new Date();
-    this.taskList.push(t);
-   
-    } this.selectedTask = this.taskList[0];
+   this.taskService.getList().subscribe((response)=> {
+     this.taskList = response;
+     this.selectedTask = this.taskList[0];
+   }, error => {
+     this.message = error;
+   });
+    
   }
   updateSelectedTask(event:any) {
-    if(event) {
-      this.message="Task has been deleted successfully.";
-      this.getListOfItems();
+    let key = Object.keys(event)[0];
+    if(event[key]) {
+      
+      this.message=`Task has been ${key}d successfully.`;
+      if(key === 'delet') {
+        this.getListOfItems();
+      }
     } else {
-      this.message="Error while delete the task";
+      this.message=`Error while ${key}ing the task`;
     }
   }
   selectTask(t:Task) {
