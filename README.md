@@ -17,7 +17,7 @@
     ### run mongodb on your local machine
   
  ## taskManager(backend application)
-   ###create as a three layered architecture pattern.
+   ###created as a three layered architecture pattern.
    ###used dependency Injection
  
  ## angular-projects(frontend application)
