@@ -10,10 +10,10 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   {
-    path: 'task', component:TaskComponent ,canActivate:[AuthGuard], children: [{
-      path: 'task-list',component:ListTaskComponent
+    path: 'task', component:TaskComponent , children: [{
+      path: 'task-list',canActivate:[AuthGuard],component:ListTaskComponent
     },{
-      path: 'createTask',component:CreateTaskComponent
+      path: 'createTask',canActivate:[AuthGuard],component:CreateTaskComponent
     },
     { path: '', redirectTo: 'task/task-list', pathMatch: 'full' },
   ]
