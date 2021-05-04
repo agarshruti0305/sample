@@ -1,0 +1,20 @@
+<div class="container" style="height:70vh;width:50%;padding:20px;border:solid 5px;">
+  
+        <div class="card">
+           <div>{{message}}</div>
+            <div class="card-body">
+               
+              <h5 class="card-title">Create Task</h5>
+              <label for="usr"style="padding:5px;">Task Name:</label>
+            <input type="text"style="margin-right:20px;" [(value)]="task.taskName"/>
+            <label for="usr" style="padding:5px;">Task Date:</label>
+            <input type="date" [(value)]="task.taskDate" />
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-secondary me-md-2" type="button" style="margin-right:5px;" (click)="cancel()">Cancel</button>
+                <button class="btn btn-primary" type="button"(click)="createTask()">Create</button>
+              </div>
+            </div>
+          </div>
+          </div>
+     
+ 
